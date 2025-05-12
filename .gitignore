@@ -1,0 +1,13 @@
+node_modules
+
+myenv
+
+.next
+
+.env
+
+.env.local
+
+.env.development.local
+
+__pycache__
