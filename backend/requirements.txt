@@ -1,6 +1,7 @@
 Flask==2.3.2
 Flask-Cors==4.0.0
 SQLAlchemy==2.0.29
+flask_sqlalchemy==3.0.3
 scikit-learn==1.4.2
 pandas==2.2.2
 matplotlib==3.8.4
