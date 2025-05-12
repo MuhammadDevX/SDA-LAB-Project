@@ -1,4 +1,3 @@
-from typing import override
 from flask import Blueprint, jsonify, request
 from models.transaction import Transaction
 from services.recommendation_service import RecommendationService
