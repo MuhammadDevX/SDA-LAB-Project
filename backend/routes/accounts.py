@@ -28,4 +28,14 @@ def add_account():
         acc = CheckingAccount(name=data['name'], balance=data.get('balance', 0.0))
     db.session.add(acc)
     db.session.commit()
-    return jsonify({'id': acc.id, 'name': acc.name, 'balance': acc.balance, 'type': acc.type}), 201 
+    return jsonify({'id': acc.id, 'name': acc.name, 'balance': acc.balance, 'type': acc.type}), 201
+
+@accounts_bp.route('/<int:account_id>', methods=['DELETE'])
+def delete_account(account_id):
+    account = Account.query.get(account_id)
+    if not account:
+        return jsonify({'error': 'Account not found'}), 404
+    # Delete related transactions (handled by cascade), and delete account
+    db.session.delete(account)
+    db.session.commit()
+    return jsonify({'message': 'Account and related transactions deleted.'}), 200 

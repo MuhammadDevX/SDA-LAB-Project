@@ -6,7 +6,7 @@ class Account(db.Model):
     name = db.Column(db.String, nullable=False)
     balance = db.Column(db.Float, default=0.0)
     type = db.Column(db.String, nullable=False)
-    transactions = db.relationship('Transaction', backref='account', lazy=True)
+    transactions = db.relationship('Transaction', backref='account', lazy=True, cascade='all, delete-orphan')
     __mapper_args__ = {
         'polymorphic_identity': 'account',
         'polymorphic_on': type

@@ -3,7 +3,7 @@ import AccountSummary from '../components/AccountSummary';
 import Recommendations from '../components/Recommendations';
 import FinancialCharts from '../components/FinancialCharts';
 import AccountList from '../components/AccountList';
-import { apiGet, apiPost } from '../utils/api';
+import { apiGet, apiPost, apiDelete } from '../utils/api';
 
 export default function Dashboard() {
   const [accounts, setAccounts] = useState([]);
@@ -47,6 +47,26 @@ export default function Dashboard() {
     }
   };
 
+  const handleRemoveAccount = async (accountId) => {
+    setError(null);
+    setSuccess(null);
+    try {
+      await apiDelete(`/api/accounts/${accountId}`);
+      setSuccess('Account removed successfully!');
+      // Refresh all data
+      const [accs, txs, recs] = await Promise.all([
+        apiGet('/api/accounts/'),
+        apiGet('/api/transactions/'),
+        apiGet('/api/recommendations/'),
+      ]);
+      setAccounts(accs);
+      setTransactions(txs);
+      setRecommendations(recs.recommendations);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   return (
     <div style={{ background: 'var(--color-bg)', minHeight: '100vh', padding: '2.5rem 0' }}>
       <div style={{ maxWidth: 1000, margin: '0 auto' }}>
@@ -61,7 +81,7 @@ export default function Dashboard() {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem' }}>
           <div>
             <div className="card">
-              <AccountList accounts={accounts} onAdd={handleAddAccount} />
+              <AccountList accounts={accounts} onAdd={handleAddAccount} onRemove={handleRemoveAccount} />
               <AccountSummary accounts={accounts} />
             </div>
           </div>
