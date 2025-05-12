@@ -3,7 +3,7 @@ export default function AccountSummary({ accounts }) {
   return (
     <div style={{ marginBottom: '2rem' }}>
       <h2>Account Summary</h2>
-      <div style={{ display: 'flex', gap: '2rem' }}>
+      <div style={{ display: 'flex',flexWrap:'wrap', gap: '2rem' }}>
         {accounts.map(acc => (
           <div key={acc.id} style={{ background: '#f1f5f9', padding: '1rem 2rem', borderRadius: 8, minWidth: 150 }}>
             <h3>{acc.name}</h3>

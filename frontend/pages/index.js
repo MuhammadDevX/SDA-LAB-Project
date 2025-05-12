@@ -78,21 +78,18 @@ export default function Dashboard() {
           </div>
         </div>
         <h1 style={{ fontWeight: 700, fontSize: 32, marginBottom: 24, color: 'var(--color-heading)', letterSpacing: 0.5 }}>Dashboard</h1>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem' }}>
-          <div>
+        <div style={{ display: 'grid', gridTemplateColumns: '50rem', gap: '2.5rem' }}>
             <div className="card">
               <AccountList accounts={accounts} onAdd={handleAddAccount} onRemove={handleRemoveAccount} />
               <AccountSummary accounts={accounts} />
             </div>
-          </div>
-          <div>
+        
             <div className="card">
               <FinancialCharts transactions={transactions} />
             </div>
             <div className="card">
               <Recommendations recommendations={recommendations} />
             </div>
-          </div>
         </div>
         {loading && <p style={{ textAlign: 'center', color: 'var(--color-primary)', marginTop: 32 }}>Loading...</p>}
         {error && <p style={{ textAlign: 'center', color: 'var(--color-error)', marginTop: 32 }}>{error}</p>}

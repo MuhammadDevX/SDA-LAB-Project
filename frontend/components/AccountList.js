@@ -32,7 +32,7 @@ export default function AccountList({ accounts, onAdd, onRemove }) {
       <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
         {accounts.length === 0 && <p style={{ color: '#888' }}>No accounts yet.</p>}
         {accounts.map(acc => (
-          <div key={acc.id} style={{ background: '#f1f5f9', padding: '1rem 2rem', borderRadius: 8, minWidth: 180, boxShadow: '0 1px 4px rgba(0,0,0,0.04)', position: 'relative' }}>
+          <div key={acc.id} style={{ background: '#f1f5f9', padding: '1rem 2rem', borderRadius: 8, minWidth: 150, boxShadow: '0 1px 4px rgba(0,0,0,0.04)', position: 'relative' }}>
             <h3 style={{ margin: 0 }}>{acc.name}</h3>
             <p style={{ fontSize: 20, fontWeight: 600, margin: '0.5rem 0' }}>${acc.balance.toLocaleString()}</p>
             <span style={{ color: '#2563eb', fontWeight: 500 }}>{acc.type.charAt(0).toUpperCase() + acc.type.slice(1)}</span>
